@@ -1,7 +1,6 @@
-
 #SingleInstance force
 #NoEnv
-SetBatchLines, -1
+SetBatchLines, -1 
 
 Gui, New, +hwndhParentGUI
 Gui, Color, Red
@@ -18,8 +17,7 @@ Loop 100
          Gui, Add, Text, x+10 w21 h21 yp 0x201, % i 
       Gui, Add, Edit, x+10 yp w55 hp r1, % A_Index
    }
-}
-
+} 
 SG1 := New ScrollGUI(HGUI, 0, 200, "-Caption -Resize", 2, 2)
 SG1.SetLine(2, 31) 
 
@@ -41,6 +39,11 @@ SG2 := New ScrollGUI(HGUI, 330, 200, "-Caption -Resize", 3, 4)
 SG1.Show("ScrollGUI1 Title", "x0 y0 NA")
 SG2.Show("ScrollGUI2 Title", "x0 y" SG1.GuiSizeH + 1 " NA")
 
+Gui, %hParentGui%:Add, Edit, % "+0x100000 +0x4 +0x80 -wrap w" SG1.GuiSizeW - SG2.GuiSizeW - 2
+	. " h" SG2.GuiSizeH
+	. " x" SG2.GuiSizeW + 2
+	. " y" SG1.GuiSizeH + 1
+	
 Gui, %hParentGui%: Show, % "w" SG1.GuiSizeW " h" SG1.GuiSizeH + SG2.GuiSizeH + 1
 Return
 
